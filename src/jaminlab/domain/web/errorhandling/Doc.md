@@ -1,0 +1,1 @@
+Intercepts Errors and process them
