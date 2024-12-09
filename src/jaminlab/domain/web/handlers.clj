@@ -64,7 +64,7 @@
             :limit limit
             :page page}}))
 
-; Login evaluator
+; Login handler
 (defn login-handler [request]
   (let [user-id (get-in request [:params :user-id])
         password (get-in request [:params :password])

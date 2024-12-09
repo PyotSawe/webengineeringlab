@@ -7,7 +7,7 @@
 (s/def ::password string?)
 (s/def ::roles (s/coll-of string?))
 
-(s/def ::user-db
+(s/def ::user-db 
   (s/keys :req-un [::user-id ::username ::email ::password ::roles]))
 
 ;; Define the session schema

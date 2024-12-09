@@ -3,37 +3,90 @@
         ;;Sanity and validation Layer
 
         ;;Web layer
+        ;;         Routing
+        metosin/reitit {:mvn/version "0.7.2"}
+        integrant/integrant {:mvn/version "0.13.1"}
+        ;; Ring
+        metosin/ring-http-response   {:mvn/version "0.9.4"}
+        ring/ring-core               {:mvn/version "1.13.0"}
+        ring/ring-defaults           {:mvn/version "0.5.0"}
+        ; URL
+        lambdaisland/uri {:mvn/version "1.19.155"}
 
+        ;;Adapters
+                         ;; use Immutant or Tomcat instead of Jetty:
+        io.pedestal/pedestal.jetty {:mvn/version "0.7.2"}
+        io.pedestal/pedestal.immutant {:mvn/version "0.6.4"}
+        io.pedestal/pedestal.tomcat {:mvn/version "0.6.4"}
+        aleph/aleph {:mvn/version "0.8.1"} ;; for netty
         ;;Network Later
-
+        http-kit/http-kit {:mvn/version "2.9.0-alpha1"}
+        ;[java-http-clj "0.4.3"]
         ;;Business/Application Layer
-
+        io.pedestal/pedestal.service {:mvn/version "0.7.2"}
+        
         ;;Security Layer
         pandect/pandect {:mvn/version "1.0.2"}
         buddy/buddy-sign {:mvn/version "3.6.1-359"}
         buddy/buddy-auth {:mvn/version "3.0.323"}
-        ;; buddy/buddy-hashers {:mvn/version "1.6.0"}
+        buddy/buddy-hashers {:mvn/version "2.0.167"}
         com.taoensso/nippy {:mvn/version "3.4.2"}
         buddy/buddy-core {:mvn/version "1.12.0-430"}
-        ;;Configurations Layer
+        ;;Configurations Layer 
+        ;;Install aero.core 
 
         ;;Model layer
 
         ;;Persistence/Repository Layer
+        ;;honeysql/honeysql {:mvn/version "1.0.461"}
+        com.layerware/hugsql {:mvn/version "0.5.3"}
+        com.layerware/hugsql-adapter-next-jdbc {:mvn/version "0.5.3"}
+        ; Drivers
+        com.github.igrishaev/pg2-core {:mvn/version "0.1.22"}
+        com.github.igrishaev/pg2-honey {:mvn/version "0.1.22"}
+        com.github.igrishaev/pg2-hugsql {:mvn/version "0.1.22"}
+        org.postgresql/postgresql {:mvn/version "42.7.4"}
+        com.github.seancorfield/next.jdbc {:mvn/version "1.3.967"}
+        com.h2database/h2 {:mvn/version "2.3.232"}
+        com.taoensso/carmine {:mvn/version "3.4.1"}
+        com.novemberain/monger {:mvn/version "3.6.0"}
 
         ;;Integration
-        ;; Message Queues
-        ;; langohr/langohr {:mvn/version "5.1.0"}
+        ;;          Message Queues
+        ;;          langohr/langohr {:mvn/version "5.1.0"}
 
+
+        ;; Logging
+        ch.qos.logback/logback-classic  {:mvn/version "1.5.12"}
+        org.slf4j/jul-to-slf4j {:mvn/version "2.0.16"}
+        org.slf4j/jcl-over-slf4j {:mvn/version "2.0.16"}
+        org.slf4j/slf4j-simple {:mvn/version "2.0.16"}
+        org.slf4j/log4j-over-slf4j {:mvn/version "2.0.16"}
+           ;; Data coercion
+        luminus-transit/luminus-transit {:mvn/version "0.1.6"
+                                            :exclusions [com.cognitect/transit-clj]}
+        metosin/muuntaja                {:mvn/version "0.6.10"}
         ;;Time
         clojure.java-time/clojure.java-time {:mvn/version "1.4.3"}
         }
  :aliases
  {:run-m {:main-opts ["-m" "jaminlab.webengineeringlab"]}
+  :dev  {:extra-deps  {com.lambdaisland/classpath      {:mvn/version "0.6.58"}
+                                criterium/criterium             {:mvn/version "0.4.6"}
+                                expound/expound                 {:mvn/version "0.9.0"}
+                                integrant/repl                  {:mvn/version "0.4.0"}
+                                mvxcvi/cljstyle                 {:mvn/version "0.16.630"}
+                                pjstadig/humane-test-output     {:mvn/version "0.11.0"}
+                                ring/ring-devel                 {:mvn/version "1.13.0"}
+                                ring/ring-mock                  {:mvn/version "0.4.0"}
+                                io.github.kit-clj/kit-generator {:mvn/version "0.2.3"}
+                                org.clojure/tools.namespace     {:mvn/version "1.5.0"}
+                                }
+                  :extra-paths ["env/dev/clj" "env/dev/resources" "test/clj"]}
   :run-x {:ns-default jaminlab.webengineeringlab
           :exec-fn greet
           :exec-args {:name "Clojure"}}
-  :build {:deps {io.github.clojure/tools.build {:mvn/version "0.10.5"}}
+  :build {:deps {io.github.clojure/tools.build {:mvn/version "0.10.6"}}
           :ns-default build}
   :test {:extra-paths ["test"]
          :extra-deps {org.clojure/test.check {:mvn/version "1.1.1"}

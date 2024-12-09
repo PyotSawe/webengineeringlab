@@ -51,6 +51,9 @@
    :name name
    :email email})
 
+(defn user [{:as user-details}]
+  (map->User user-details))
+
 (defn create-order [user-id items total-price]
   {:id (random-uuid)
    :user-id user-id
